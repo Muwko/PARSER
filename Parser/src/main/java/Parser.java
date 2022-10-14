@@ -1,7 +1,5 @@
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 import java.net.URL;
 import java.io.IOException;
@@ -24,8 +22,8 @@ public class Parser {
 
 
 
-        System.out.println("USD  " + ParserService.currentylyRaid.UsdBuy + "   " + ParserService.currentylyRaid.UsdSell );
-        System.out.println("EURO " + ParserService.currentylyRaid.euroBuy + "   " + ParserService.currentylyRaid.euroSell);
+        System.out.println("USD  " + ParserService.CurrentylyRaid.usdBuy + "   " + ParserService.CurrentylyRaid.usdSell );
+        System.out.println("EURO " + ParserService.CurrentylyRaid.euroBuy + "   " + ParserService.CurrentylyRaid.euroSell);
 
     }
 }

@@ -6,26 +6,37 @@ import java.io.IOException;
 
 public class ParserService {
 
-   class currentylyRaid {
+   static class CurrentylyRaid {
 
-        FinanceUaRepositories financeUaRepositories = new FinanceUaRepositories();
-        Document doc = financeUaRepositories.getPage();
-        Elements tables_1 = doc.getElementsByTag("tbody");
-        Element table_Change = tables_1.get(0);
-        Elements elements_from_table = table_Change.children();
-        Element dollar = elements_from_table.get(0);
-        Elements dollar_elements = dollar.children();
+       CurrentylyRaid() throws IOException {
+       }
 
-        String UsdBuy = dollar_elements.select("td[class=c2]").text();
-        String UsdSell = dollar_elements.select("td[class=c3]").text();
+        static FinanceUaRepositories financeUaRepositories = new FinanceUaRepositories();
+        static Document doc;
 
-        Element euro = elements_from_table.get(2);
-        Elements euro_elements = euro.children();
+    static {
+     try {
+      doc = FinanceUaRepositories.getPage();
+     } catch (IOException e) {
+      throw new RuntimeException(e);
+     }
+    }
 
-        String euroBuy = euro_elements.select("td[class=c2]").text();
-        String euroSell = euro_elements.select("td[class=c3]").text();
+    static Elements tables1 = doc.getElementsByTag("tbody");
+        static  Element tableChange = tables1.get(0);
+        static Elements elementsFromTable = tableChange.children();
+        static Element dollar = elementsFromTable.get(0);
+        static Elements dollarElements = dollar.children();
 
-        currentylyRaid() throws IOException {
-        }
+        static String usdBuy = dollarElements.select("td[class=c2]").text();
+        static String usdSell = dollarElements.select("td[class=c3]").text();
+
+        static Element euro = elementsFromTable.get(2);
+        static Elements euroElements = euro.children();
+
+        static String euroBuy = euroElements.select("td[class=c2]").text();
+        static String euroSell = euroElements.select("td[class=c3]").text();
+
+
     }
 }
