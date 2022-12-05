@@ -6,37 +6,71 @@ import java.io.IOException;
 
 public class ParserService {
 
-   static class CurrentylyRaid {
 
-       CurrentylyRaid() throws IOException {
-       }
+    private Document doc;
 
-        static FinanceUaRepositories financeUaRepositories = new FinanceUaRepositories();
-        static Document doc;
-
-    static {
-     try {
-      doc = FinanceUaRepositories.getPage();
-     } catch (IOException e) {
-      throw new RuntimeException(e);
-     }
+    public ParserService() {
     }
 
-    static Elements tables1 = doc.getElementsByTag("tbody");
-        static  Element tableChange = tables1.get(0);
-        static Elements elementsFromTable = tableChange.children();
-        static Element dollar = elementsFromTable.get(0);
-        static Elements dollarElements = dollar.children();
+    public Rate getMinyayloRate() throws IOException {
+        doc = FinanceUaRepositories.getSourceOfPage();
+        Elements tables1 = doc.getElementsByTag("tbody");
+        Element tableChange = tables1.get(0);
+        Elements elementsFromTable = tableChange.children();
+        Element dollar = elementsFromTable.get(0);
+        Elements dollarElements = dollar.children();
 
-        static String usdBuy = dollarElements.select("td[class=c2]").text();
-        static String usdSell = dollarElements.select("td[class=c3]").text();
+        String usdBuy = dollarElements.select("td[class=c2]").text();
+        String usdSell = dollarElements.select("td[class=c3]").text();
 
-        static Element euro = elementsFromTable.get(2);
-        static Elements euroElements = euro.children();
+        Element euro = elementsFromTable.get(2);
+        Elements euroElements = euro.children();
 
-        static String euroBuy = euroElements.select("td[class=c2]").text();
-        static String euroSell = euroElements.select("td[class=c3]").text();
+        String euroBuy = euroElements.select("td[class=c2]").text();
+        String euroSell = euroElements.select("td[class=c3]").text();
+
+        return new Rate(usdBuy, usdSell, euroBuy, euroSell);
+    }
 
 
+    public Rate getCashRate() throws IOException {
+        doc = FinanceUaRepositories.getSourceOfPage();
+        Elements tables1 = doc.getElementsByTag("tbody");
+        Element tableChange = tables1.get(3);
+        Elements elementsFromTable = tableChange.children();
+        Element dollar = elementsFromTable.get(0);
+        Elements dollarElements = dollar.children();
+
+        String usdBuy = dollarElements.select("td[class=c2]").text();
+        String usdSell = dollarElements.select("td[class=c3]").text();
+
+        Element euro = elementsFromTable.get(1);
+        Elements euroElements = euro.children();
+
+        String euroBuy = euroElements.select("td[class=c2]").text();
+        String euroSell = euroElements.select("td[class=c3]").text();
+
+        return new Rate(usdBuy, usdSell, euroBuy, euroSell);
+    }
+
+
+    public Rate getBankRate() throws IOException {
+        doc = FinanceUaRepositories.getSourceOfPage();
+        Elements tables1 = doc.getElementsByTag("tbody");
+        Element tableChange = tables1.get(6);
+        Elements elementsFromTable = tableChange.children();
+        Element dollar = elementsFromTable.get(0);
+        Elements dollarElements = dollar.children();
+
+        String usdBuy = dollarElements.select("td[class=c2]").text();
+        String usdSell = dollarElements.select("td[class=c3]").text();
+
+        Element euro = elementsFromTable.get(1);
+        Elements euroElements = euro.children();
+
+        String euroBuy = euroElements.select("td[class=c2]").text();
+        String euroSell = euroElements.select("td[class=c3]").text();
+
+        return new Rate(usdBuy, usdSell, euroBuy, euroSell);
     }
 }
