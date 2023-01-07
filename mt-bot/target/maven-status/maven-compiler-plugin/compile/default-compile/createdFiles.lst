@@ -1,0 +1,8 @@
+online\qastudy\Main.class
+online\qastudy\bot\JobBot.class
+online\qastudy\bot\FinanceUaRepositories.class
+online\qastudy\util\Const.class
+online\qastudy\bot\MuayThaiBot.class
+online\qastudy\service\MTSchedulerService.class
+online\qastudy\bot\Rate.class
+online\qastudy\bot\ParserService.class
