@@ -12,11 +12,11 @@ public class Rate {
 
     @Override
     public String toString() {
-        return " " +
-                "usdBuy='" + usdBuy + '\n' +
-                " usdSell='" + usdSell + '\n' +
-                " euroBuy='" + euroBuy + '\n' +
-                " euroSell='" + euroSell + '\n' +
+        return "" +
+                "Долар купівля = " + usdBuy + '\n' +
+                "Долар продажа = " + usdSell + '\n' +
+                "Євро купівля = " + euroBuy + '\n' +
+                "Євро продажа = " + euroSell + '\n' +
                 "";
     }
 

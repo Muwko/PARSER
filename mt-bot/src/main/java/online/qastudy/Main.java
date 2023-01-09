@@ -23,7 +23,7 @@ public class Main {
 
         JobDetail jobBot= JobBuilder.newJob(JobBot.class).withIdentity("jobBot", "group1").build();
         Trigger t1 = TriggerBuilder.newTrigger().withIdentity("cronTrigger","group1")
-                .withSchedule(CronScheduleBuilder.cronSchedule("0 13 11 * * ?")).build();
+                .withSchedule(CronScheduleBuilder.cronSchedule("0 0 9 * * ?")).build();
         Scheduler scheduler1 = new StdSchedulerFactory().getScheduler();
         scheduler1.start();
         scheduler1.scheduleJob(jobBot, t1);
