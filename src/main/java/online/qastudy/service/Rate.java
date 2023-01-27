@@ -21,6 +21,7 @@ public class Rate {
                 "Євро купівля = " + euroBuy + '\n' +
                 "Євро продажа = " + euroSell + '\n' +
                 "";
+
     }
 
     public String getUsdBuy() {
