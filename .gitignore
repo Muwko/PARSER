@@ -79,5 +79,5 @@ fabric.properties
 .git/
 .idea/
 .out/
-.target/**
+.target/
 Dockerfile

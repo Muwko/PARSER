@@ -11,18 +11,18 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiRequestException;
 
 
 public class Main {
+
     public static void main(String[] args) throws SchedulerException {
         ApiContextInitializer.init();
 
         TelegramBotsApi api = new TelegramBotsApi();
 
-        JobDetail jobBot= JobBuilder.newJob(JobBot.class).withIdentity("jobBot", "group1").build();
-        Trigger t1 = TriggerBuilder.newTrigger().withIdentity("cronTrigger","group1")
+        JobDetail jobBot = JobBuilder.newJob(JobBot.class).withIdentity("jobBot", "group1").build();
+        Trigger t1 = TriggerBuilder.newTrigger().withIdentity("cronTrigger", "group1")
                 .withSchedule(CronScheduleBuilder.cronSchedule("0 0 9 * * ?")).build();
         Scheduler scheduler1 = new StdSchedulerFactory().getScheduler();
         scheduler1.start();
         scheduler1.scheduleJob(jobBot, t1);
-
 
 
         try {
@@ -30,6 +30,7 @@ public class Main {
         } catch (TelegramApiRequestException e) {
             e.printStackTrace();
         }
+
     }
 
 
