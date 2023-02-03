@@ -5,12 +5,21 @@ public class Rate {
     private String usdSell;
     private String euroBuy;
     private String euroSell;
+    private String nameCoin;
+    private String priceCoin;
 
     public Rate(String usdBuy, String usdSell, String euroBuy, String euroSell) {
         this.usdBuy = usdBuy;
         this.usdSell = usdSell;
         this.euroBuy = euroBuy;
         this.euroSell = euroSell;
+
+    }
+
+
+    public Rate(String nameCoin, String priceCoin) {
+        this.nameCoin = nameCoin;
+        this.priceCoin = priceCoin;
     }
 
     @Override
@@ -20,8 +29,7 @@ public class Rate {
                 "Долар продажа = " + usdSell + '\n' +
                 "Євро купівля = " + euroBuy + '\n' +
                 "Євро продажа = " + euroSell + '\n' +
-                "";
-
+                " " + nameCoin + priceCoin;
     }
 
     public String getUsdBuy() {
@@ -55,4 +63,16 @@ public class Rate {
     }
 
 
+
+
+    public String getNameCoin() {return nameCoin; }
+
+    public void setNameCoin(String nameCoin) {
+        this.nameCoin = nameCoin;
+    }
+
+    public String getPriceCoin() {return priceCoin; }
+
+    public void setPriceCoin(String priceCoin) {this.priceCoin = priceCoin;
+    }
 }

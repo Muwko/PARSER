@@ -19,11 +19,11 @@ import java.util.Optional;
 public class ParserBot extends TelegramLongPollingSessionBot {
 
     public void onUpdateReceived(Update update) {
-
+        // TODO document why this method is empty
     }
 
     public void onUpdateReceived(Update update, Optional<Session> optional) {
-
+        // TODO document why this method is empty
     }
 
     public void sendNotification() throws IOException, SchedulerException {
@@ -34,10 +34,13 @@ public class ParserBot extends TelegramLongPollingSessionBot {
             Rate minyayloRate = parser.getMinyayloRate();
             Rate bankRate = parser.getBankRate();
             Rate cashRate = parser.getCashRate();
+            Rate coinRate = parser.getCoinRate();
+
 
             System.out.println(minyayloRate);
             System.out.println(cashRate);
             System.out.println(bankRate);
+            System.out.println(coinRate);
 
             SendMessage postToChanel = new SendMessage()
                     .setChatId(Const.CHAT_ID)
@@ -54,8 +57,7 @@ public class ParserBot extends TelegramLongPollingSessionBot {
     ParserService parser = new ParserService();
 
     Rate minyayloRate;
-    {
-        try {
+    { try {
             minyayloRate = parser.getMinyayloRate();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -71,7 +73,7 @@ public class ParserBot extends TelegramLongPollingSessionBot {
         }
     }
 
-   Rate cashRate;
+    Rate cashRate;
     {
         try {
             cashRate = parser.getCashRate();
@@ -80,11 +82,25 @@ public class ParserBot extends TelegramLongPollingSessionBot {
         }
     }
 
+    Rate coinRate;
+    {
+        try {
+            coinRate = parser.getCoinRate();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
+
     public final String MESSAGE = String.format(
-            "Курс валют на сьогодні по данним finance.ua" +"\n" + "\n" +
+            "Курс валют на сьогодні по данним finance.ua" + "\n" + "\n" +
                     "Міняйло   " + "\n" + minyayloRate + "\n" +
                     "Готівковий Курс   " + "\n" + cashRate + "\n" +
-                    "Між Банк   " + "\n" + bankRate);
+                    "Між Банк   " + "\n" + bankRate +
+                    "Ціни на купівлю крипто монет " + "\n" +"" +
+                    coinRate + "");
 
     public String getBotUsername() {
         return Const.BOT_NAME;

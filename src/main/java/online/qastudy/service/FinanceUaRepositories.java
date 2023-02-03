@@ -13,4 +13,9 @@ public class FinanceUaRepositories {
         return Jsoup.parse(new URL(url), 3000);
     }
 
+    public static Document getSourceOfPageCrypto() throws IOException {
+        String url = "https://finance.ua/ua/crypto";
+        return Jsoup.parse(new URL(url), 3000);
+    }
+
 }
